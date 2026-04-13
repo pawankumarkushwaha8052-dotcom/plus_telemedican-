@@ -1,0 +1,46 @@
+:root {
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --text: #1f2430;
+  --accent: #2f6df3;
+}
+
+* { box-sizing: border-box; font-family: Inter, Arial, sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem; background: #111827; color: #fff;
+}
+.topbar a { color: #dbeafe; text-decoration: none; }
+.container { max-width: 1100px; margin: 1.5rem auto; padding: 0 1rem; }
+.card { background: var(--card); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+.hero h2 { margin: 0 0 .4rem; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.8rem; }
+label { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.95rem; }
+input, select, textarea {
+  border: 1px solid #cfd8e3; border-radius: 8px; padding: .6rem .7rem; font-size: .95rem;
+}
+.full { grid-column: span 2; }
+.btn {
+  width: fit-content; border: none; border-radius: 8px; padding: .65rem 1rem;
+  color: white; background: var(--accent); cursor: pointer; font-weight: 600;
+}
+.btn.small { padding: .4rem .7rem; font-size: .85rem; }
+.alerts { margin-bottom: 1rem; }
+.alert { border-radius: 8px; padding: .6rem .8rem; margin-bottom: .5rem; }
+.alert.success { background: #dcfce7; color: #166534; }
+.alert.error { background: #fee2e2; color: #991b1b; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid #e5e7eb; text-align: left; vertical-align: top; padding: .7rem; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
+.priority { padding: .2rem .5rem; border-radius: 999px; font-size: .8rem; font-weight: 700; }
+.priority.high { background: #fee2e2; color: #991b1b; }
+.priority.medium { background: #fef3c7; color: #92400e; }
+.priority.low { background: #dcfce7; color: #166534; }
+
+@media (max-width: 720px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .full { grid-column: span 1; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
