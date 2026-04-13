@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Appointment Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Plus TeleMedica</h1>
+      <nav><a href="{{ url_for('admin') }}">Admin Panel</a></nav>
+    </header>
+
+    <main class="container">
+      <section class="card hero">
+        <h2>Book your appointment with AI-assisted triage</h2>
+        <p>Submit your symptoms and preferred schedule. Our AI triage engine prioritizes requests so the clinical team can act faster.</p>
+      </section>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <section class="alerts">
+            {% for category, message in messages %}
+              <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </section>
+        {% endif %}
+      {% endwith %}
+
+      <section class="card">
+        <h3>Appointment Request</h3>
+        <form action="{{ url_for('book') }}" method="post" class="form-grid">
+          <label>Full Name<input type="text" name="patient_name" required /></label>
+          <label>Email<input type="email" name="email" required /></label>
+          <label>Phone<input type="tel" name="phone" required /></label>
+          <label>
+            Service
+            <select name="service" required>
+              {% for service, minutes in services.items() %}
+                <option value="{{ service }}">{{ service }} ({{ minutes }} min)</option>
+              {% endfor %}
+            </select>
+          </label>
+          <label>Preferred Date<input type="date" name="preferred_date" required /></label>
+          <label>Preferred Time<input type="time" name="preferred_time" required /></label>
+          <label class="full">Symptoms / Concern<textarea name="symptoms" rows="5" required></textarea></label>
+          <button type="submit" class="btn">Submit Appointment</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
